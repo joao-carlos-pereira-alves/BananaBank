@@ -4,14 +4,22 @@ defmodule BananaBankWeb.UsersControllerTest do
   alias BananaBank.Users
   alias Users.User
 
-  describe "create/1" do
+  import Mox
+
+  setup :verify_on_exit!
+
+  describe "create/2" do
     test "successfully creates an user", %{conn: conn} do
       params = %{
         name: "João",
-        cep: "12345678",
+        cep: "96402130",
         email: "teste@gmail.com",
         password: "123456"
       }
+
+      expect(BananaBank.ViaCep.ClientMock, :call, fn "96402130" ->
+        nil
+      end)
 
       response =
         conn
@@ -19,7 +27,7 @@ defmodule BananaBankWeb.UsersControllerTest do
         |> json_response(:created)
 
       assert %{
-               "data" => %{"cep" => "12345678", "email" => "teste@gmail.com", "id" => _id, "name" => "João"},
+               "data" => %{"cep" => "96402130", "email" => "teste@gmail.com", "id" => _id, "name" => "João"},
                "message" => "User criado com sucesso."
              } = response
     end
@@ -47,7 +55,7 @@ defmodule BananaBankWeb.UsersControllerTest do
     test "successfully deletes an user", %{conn: conn} do
       params = %{
         name: "João",
-        cep: "12345678",
+        cep: "96402130",
         email: "teste@gmail.com",
         password: "123456"
       }
@@ -60,7 +68,7 @@ defmodule BananaBankWeb.UsersControllerTest do
         |> json_response(:ok)
 
       expected_response = %{
-        "data" => %{"cep" => "12345678", "email" => "teste@gmail.com", "id" => id, "name" => "João"}
+        "data" => %{"cep" => "96402130", "email" => "teste@gmail.com", "id" => id, "name" => "João"}
       }
 
       assert response == expected_response
