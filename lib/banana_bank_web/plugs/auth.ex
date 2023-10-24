@@ -9,7 +9,6 @@ defmodule BananaBankWeb.Plugs.Auth do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization"),
          {:ok, data} <- Token.verify(token) do
       assign(conn, :user_id, data.user_id)
-      IO.inspect(conn)
     else
       _error ->
         conn
