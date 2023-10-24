@@ -1,18 +1,28 @@
 # BananaBank
 
-To start your Phoenix server:
+**This is an app created as part of Udemy's ELixir and Phoenix from Scratch online course. The application consists of creating a "bank", where it is possible to register users, authenticate themselves and carry out bank transfers between users of the same project.**
 
-  * Run `mix setup` to install and setup dependencies
-  * Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
+## Installation
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Clone this repo and execute the following commands insite the project directory.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+1. Install the dependecies
 
-## Learn more
+```elixir
+mix deps.get
+```
 
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+2. Start Phoenix server
+
+```elixir
+mix phx.server
+```
+
+## Routes
+
+To view the routes, use the command
+
+```elixir
+mix phx.routes
+```
+
